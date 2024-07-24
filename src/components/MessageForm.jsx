@@ -17,7 +17,7 @@ const MessageForm = () => {
           "https://cms-backend-ss96.onrender.com/api/v1/message/send",
           { firstName, lastName, email, phone, message },
           {
-            withCredentials: true,
+            // withCredentials: true,
             headers: { "Content-Type": "application/json" },
           }
         )

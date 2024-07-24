@@ -21,7 +21,7 @@ const Login = () => {
           "https://cms-backend-ss96.onrender.com/api/v1/user/login",
           { email, password, confirmPassword, role: "Patient" },
           {
-            withCredentials: true,
+            // withCredentials: true,
             headers: { "Content-Type": "application/json" },
           }
         )

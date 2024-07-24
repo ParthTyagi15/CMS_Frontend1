@@ -23,7 +23,7 @@ const App = () => {
         const response = await axios.get(
           "https://cms-backend-ss96.onrender.com/api/v1/user/patient/me",
           {
-            withCredentials: true,
+            // withCredentials: true,
             headers: { "Content-Type": "application/json" },
           }
         );
