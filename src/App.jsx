@@ -22,7 +22,7 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://cms-backend-ss96.onrender.com/api/v1/user/patient/me",
+          "https://cms-backend-navy.vercel.app/api/v1/user/patient/me",
           {
             withCredentials: true,
           }
