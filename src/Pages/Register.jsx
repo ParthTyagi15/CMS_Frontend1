@@ -23,7 +23,7 @@ const Register = () => {
     try {
       await axios
         .post(
-          "https://cms-backend-navy.vercel.app/api/v1/user/patient/register",
+          "https://cms-backend-ss96.onrender.com/api/v1/user/patient/register",
           { firstName, lastName, email, phone, uid, dob, gender, password },
           {
             withCredentials: true,

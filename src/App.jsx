@@ -15,14 +15,13 @@ import Login from "./Pages/Login";
 // import TestingPage from "./Pages/TestingPage";
 
 const App = () => {
-  const { isAuthenticated, setIsAuthenticated, setUser } =
-    useContext(Context);
+  const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://cms-backend-navy.vercel.app/api/v1/user/patient/me",
+          "https://cms-backend-ss96.onrender.com/api/v1/user/patient/me",
           {
             withCredentials: true,
           }
@@ -35,7 +34,7 @@ const App = () => {
       }
     };
     fetchUser();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   return (
@@ -48,7 +47,7 @@ const App = () => {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-           {/* Added for testing */}
+          {/* Added for testing */}
           {/* <Route path="/TestingPage" element={<TestingPage/>} /> */}
         </Routes>
         <Footer />

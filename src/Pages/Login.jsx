@@ -18,7 +18,7 @@ const Login = () => {
     try {
       await axios
         .post(
-          "https://cms-backend-navy.vercel.app/api/v1/user/login",
+          "https://cms-backend-ss96.onrender.com/api/v1/user/login",
           { email, password, confirmPassword, role: "Patient" },
           {
             withCredentials: true,
