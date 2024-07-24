@@ -13,6 +13,7 @@ const Navbar = () => {
     await axios
       .get("https://cms-backend-ss96.onrender.com/api/v1/user/patient/logout", {
         withCredentials: true,
+        headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
         toast.success(res.data.message);
