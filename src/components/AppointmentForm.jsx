@@ -65,7 +65,7 @@ const AppointmentForm = () => {
           address,
         },
         {
-          // withCredentials: true,
+          withCredentials: true,
           headers: { "Content-Type": "application/json" },
         }
       );

@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+// import axios from "axios";
 import { Context } from "./main";
 import Login from "./Pages/Login";
 // import TestingPage from "./Pages/TestingPage";
@@ -17,26 +17,56 @@ import Login from "./Pages/Login";
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
 
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://cms-backend-ss96.onrender.com/api/v1/user/patient/me",
+  //         {
+  //           withCredentials: true,
+  //           headers: { "Content-Type": "application/json" },
+  //         }
+  //       );
+  //       setIsAuthenticated(true);
+  //       setUser(response.data.user);
+  //     } catch (error) {
+  //       console.log(error);
+  //       setIsAuthenticated(false);
+  //       setUser({});
+  //     }
+  //   };
+  //   fetchUser();
+  // }, [isAuthenticated, setIsAuthenticated, setUser]);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(
+        const response = await fetch(
           "https://cms-backend-ss96.onrender.com/api/v1/user/patient/me",
           {
-            // withCredentials: true,
+            method: "GET",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
           }
         );
+  
+        if (!response.ok) {
+          console.log(response);
+          throw new Error("Network response was not ok");
+        }
+  
+        const data = await response.json();
         setIsAuthenticated(true);
-        setUser(response.data.user);
+        setUser(data.user);
       } catch (error) {
+        console.log(error);
         setIsAuthenticated(false);
         setUser({});
       }
     };
+  
     fetchUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated]);
+  }, [isAuthenticated, setIsAuthenticated, setUser]);
+  
 
   return (
     <>

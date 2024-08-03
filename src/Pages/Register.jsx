@@ -26,7 +26,7 @@ const Register = () => {
           "https://cms-backend-ss96.onrender.com/api/v1/user/patient/register",
           { firstName, lastName, email, phone, uid, dob, gender, password },
           {
-            // withCredentials: true,
+            withCredentials: true,
             headers: { "Content-Type": "application/json" },
           }
         )

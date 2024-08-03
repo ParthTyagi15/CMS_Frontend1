@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { Context } from "../main";
@@ -13,30 +13,67 @@ const Login = () => {
 
   const navigateTo = useNavigate();
 
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await axios
+  //       .post(
+  //         "https://cms-backend-ss96.onrender.com/api/v1/user/login",
+  //         { email, password, confirmPassword, role: "Patient" },
+  //         {
+  //           withCredentials: true,
+  //           headers: { "Content-Type": "application/json" },
+  //         }
+  //       )
+  //       .then((res) => {
+  //         toast.success(res.data.message);
+  //         setIsAuthenticated(true);
+  //         navigateTo("/");
+  //         setEmail("");
+  //         setPassword("");
+  //         setConfirmPassword("");
+  //       });
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //   }
+  // };
   const handleLogin = async (e) => {
     e.preventDefault();
+  
     try {
-      await axios
-        .post(
-          "https://cms-backend-ss96.onrender.com/api/v1/user/login",
-          { email, password, confirmPassword, role: "Patient" },
-          {
-            // withCredentials: true,
-            headers: { "Content-Type": "application/json" },
-          }
-        )
-        .then((res) => {
-          toast.success(res.data.message);
-          setIsAuthenticated(true);
-          navigateTo("/");
-          setEmail("");
-          setPassword("");
-          setConfirmPassword("");
-        });
+      const response = await fetch(
+        "https://cms-backend-ss96.onrender.com/api/v1/user/login",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            confirmPassword,
+            role: "Patient"
+          })
+        }
+      );
+  
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+  
+      const data = await response.json();
+      toast.success(data.message);
+      setIsAuthenticated(true);
+      navigateTo("/");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.message);
     }
   };
+  
 
   if (isAuthenticated) {
     return <Navigate to={"/"} />;
